@@ -1,0 +1,73 @@
+package CuoiKy;
+
+import java.util.Scanner;
+
+public class Employee extends User{
+	private int employee_basic_salary;
+	private String employee_department;
+	
+	//Constructor
+	public Employee() {
+	}
+	
+	public Employee(int user_id, String user_name, String user_fullname, float user_cosalary, int employee_basic_employee, String employee_department, int employee_basic_salary) {
+		super(user_id, user_name, user_fullname, user_cosalary);
+		this.employee_basic_salary = employee_basic_salary;
+		this.employee_department = employee_department;
+	}
+
+	//Getter
+	public int getEmployee_basic_salary() {
+		return employee_basic_salary;
+	}
+
+	public String getEmployee_department() {
+		return employee_department;
+	}
+
+	//Setter
+	public void setEmployee_basic_salary(int employee_basic_salary) {
+		this.employee_basic_salary = employee_basic_salary;
+	}
+
+	public void setEmployee_department(String employee_department) {
+		this.employee_department = employee_department;
+	}
+
+	@Override
+	public void nhap(Scanner sc) {
+		super.nhap(sc);
+		System.out.println("Nhập lương cơ bản: ");
+		employee_basic_salary = sc.nextLine();
+		System.out.println("Nhập phòng ban: ");
+		employee_department = sc.nextLine();
+	}
+	
+	@Override
+	public double getSalary() {
+		double phu_cap = 0;
+		switch(employee_department) {
+			case "Nhân sự":
+				phu_cap = 1.0;
+				break;
+			case "Kinh doanh":
+				phu_cap = 1.1;
+				break;
+			case "Công nghệ":
+				phu_cap = 1.15;
+				break;
+			case "Quản trị":
+				phu_cap = 1.2;
+				break;
+			default:
+				phu_cap = 1.0;
+		}
+		return getUser_cosalary() * employee_basic_salary * phu_cap;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + "Employee [employee_basic_salary=" + employee_basic_salary + "\nemployee_department="
+				+ employee_department + "]";
+	}
+}

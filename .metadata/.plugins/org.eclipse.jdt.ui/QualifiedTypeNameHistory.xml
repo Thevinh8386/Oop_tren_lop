@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="CuoiKy.IEmployeeManager"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="CuoiKy.IEmployeeManagerImpl"/>
+    <fullyQualifiedTypeName name="javax.naming.ldap.ManageReferralControl"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="java.util.InputMismatchException"/>
+    <fullyQualifiedTypeName name="java.util.logging.Handler"/>
+    <fullyQualifiedTypeName name="CuoiKy.Employee"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+</qualifiedTypeNameHistroy>

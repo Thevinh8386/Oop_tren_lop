@@ -1,0 +1,136 @@
+package CuoiKy;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class IEmployeeManagerImpl implements IEmployeeManager {
+	static Scanner sc = new Scanner(System.in);
+	static ArrayList<Employee> employeeList = new ArrayList<>();
+	
+	//Thêm một nhân sự mới
+	@Override
+    public boolean addEmployee(Employee e) {
+		try {		
+            // Kiểm tra trùng lặp ID
+            for (Employee employee : employeeList) {
+                if (employee.getUser_id() == e.getUser_id()) {
+                    throw new IllegalArgumentException("ID nhân sự đã tồn tại!");
+                }
+            }
+            employeeList.add(e);
+            return true;
+        } catch (IllegalArgumentException ex) {
+            System.err.println("Lỗi: " + ex.getMessage());
+        } catch (Exception ex) {
+            System.err.println("Lỗi không xác định khi thêm nhân sự: " + ex.getMessage());
+        }
+        return false;
+    }
+	
+	
+	//Thay đổi thông tin nhân sự
+	@Override
+	public boolean editEmployee(Employee e) {
+		try {
+            for (int i = 0; i < employeeList.size(); i++) {
+                if (employeeList.get(i).getUser_id() == e.getUser_id()) {
+                    employeeList.set(i, e);
+//                    System.out.println("Cập nhật thông tin nhân sự thành công!");
+                    return true;
+                }
+            }
+            throw new IllegalArgumentException("Không tìm thấy nhân sự với ID: " + e.getUser_id());
+        } catch (IllegalArgumentException ex) {
+            System.err.println("Lỗi: " + ex.getMessage());
+        } catch (Exception ex) {
+            System.err.println("Lỗi không xác định khi cập nhật nhân sự: " + ex.getMessage());
+        }
+        return false;
+	}
+	
+	@Override
+	public List<Employee> searchEmployee(String fullName) {
+		try {
+            List<Employee> result = new ArrayList<>();
+            for (Employee employee : employeeList) {
+                if (employee.getUser_fullname().equalsIgnoreCase(fullName)) {
+                    result.add(employee);
+                }
+            }
+            if (result.isEmpty()) {
+                throw new IllegalArgumentException("Không tìm thấy nhân sự nào có tên đầy đủ: " + fullName);
+            }
+            return result;
+        } catch (IllegalArgumentException ex) {
+            System.err.println("Lỗi: " + ex.getMessage());
+        } catch (Exception ex) {
+            System.err.println("Lỗi không xác định khi tìm kiếm nhân sự: " + ex.getMessage());
+        }
+        return new ArrayList<>(); // Trả về danh sách rỗng nếu xảy ra lỗi
+	}
+	
+	@Override
+	public double getTotalSalary() {
+		try {
+            double total = 0;
+            for (Employee employee : employeeList) {
+                total += employee.getSalary();
+            }
+            return total;
+        } catch (Exception ex) {
+            System.err.println("Lỗi không xác định khi tính tổng lương: " + ex.getMessage());
+        }
+        return 0; //nếu xảy ra lỗi
+	}
+	
+	public void displayEmployee() {
+		for (Employee employee : employeeList) {
+			System.out.println("Danh sách các nhân sự: ");
+			System.out.println(employee.toString());
+			return;
+		}
+	}
+}
+
+
+
+//@Override
+//public boolean addEmployee(Employee e) {
+//	try {
+//		System.out.println("Nhập ID: ");
+//		int user_id = sc.nextInt();
+//		sc.nextLine();
+//		
+//		//Kiểm tra trùng ID
+//		for (Employee employee : employeeList) {
+//			if (employee.getUser_id() == user_id) {
+//				System.out.println("ID này đã tồn tại!");
+//				return false;
+//			}
+//		}
+//		
+//		
+//		//Nhập thông tin
+//		System.out.println("Nhập tên đăng nhập: ");
+//		String user_name = sc.nextLine();
+//		
+//		System.out.println("Nhập tên đầy đủ: ");
+//		String user_fullname = sc.nextLine();
+//		
+//		System.out.println("Nhập hệ số lương ");
+//		float user_cosalary = sc.nextFloat();
+//		sc.nextLine();
+//		
+//		System.out.println("Nhập lương cơ bản: ");
+//		int employee_basic_salary = sc.nextInt();
+//		sc.nextLine();
+//		
+//		System.out.println("Nhập phòng ban: ");
+//		String employee_department = sc.nextLine();
+//		
+//		Employee e1 = new Employee(user_id, user_name, user_fullname, user_cosalary, employee_basic_salary, employee_department, employee_basic_salary);
+//		employeeList.add(e1);
+//	}
+//}
+//return false;
